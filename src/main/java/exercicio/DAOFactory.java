@@ -22,16 +22,16 @@ public class DAOFactory {
 		try {
 			className = prop.getString(classType.getSimpleName());
 			dao = (T) Class.forName(className).newInstance();
-		} catch (InstantiationException e) {
+		} catch (InstantiationException e) { // erros quando tentamos instanciar algo nao instanciavel, exemplo: Interfaces
 			System.out.println("Nao foi possivel criar um objeto do tipo " + className);
 			throw new RuntimeException(e);
-		} catch (IllegalAccessException e) {
+		} catch (IllegalAccessException e) { // exemplo: construtor privado
 			System.out.println("Nao foi possivel criar um objeto do tipo " + className);
 			throw new RuntimeException(e);
-		} catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) { // classe inexistente no projeto
 			System.out.println("Classe " + className + " nao encontrada");
 			throw new RuntimeException(e);
-		} catch (MissingResourceException e) {
+		} catch (MissingResourceException e) { // dao.properties não encontrado ou a chave não foi encontrada
 			System.out.println("Chave " + classType + " nao encontrada em dao.properties");
 			throw new RuntimeException(e);
 		}
