@@ -10,7 +10,7 @@ public class MyEntityManagerFactory {
 
 	private MyEntityManagerFactory() {
 		try {
-			entityManagerFactory = Persistence.createEntityManagerFactory("exercicio");
+			entityManagerFactory = Persistence.createEntityManagerFactory("plataforma-estudos");
 		} catch (Throwable e) {
 			e.printStackTrace();
 			System.out.println(">>>>>>>>>> Mensagem de erro: " + e.getMessage());
