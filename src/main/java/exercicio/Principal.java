@@ -3,179 +3,160 @@ package exercicio;
 import java.util.List;
 import corejava.Console;
 
-public class Principal
-{	public static void main (String[] args) 
-	{	
-		String nome;
-		double lanceMinimo;
-		String dataCadastro;
-		Produto umProduto;
+public class Principal {
+	public static void main(String[] args) {
+		String name;
+		double price;
+		Product aProduct;
 
-		ProdutoDAO produtoDAO = FabricaDeDAOs.getDAO(ProdutoDAO.class);
+		ProdutoDAO productDAO = FabricaDeDAOs.getDAO(ProdutoDAO.class);
 
 		boolean continua = true;
-		while (continua)
-		{	System.out.println('\n' + "O que você deseja fazer?");
+		while (continua) {
+			System.out.println('\n' + "O que vocÃª deseja fazer?");
 			System.out.println('\n' + "1. Cadastrar um produto");
 			System.out.println("2. Alterar um produto");
 			System.out.println("3. Remover um produto");
 			System.out.println("4. Listar todos os produtos");
 			System.out.println("5. Sair");
-						
-			int opcao = Console.readInt('\n' + 
-							"Digite um número entre 1 e 5:");
-					
-			switch (opcao)
-			{	case 1:
-				{
-					nome = Console.readLine('\n' + 
-						"Informe o nome do produto: ");
-					lanceMinimo = Console.readDouble(
-						"Informe o valor do lance mínimo: ");
-					dataCadastro = Console.readLine(
-						"Informe a data de cadastramento do produto: ");
-						
-					umProduto = new Produto(nome, lanceMinimo, Util.strToDate(dataCadastro));
-					
-					produtoDAO.inclui(umProduto);
-					
-					System.out.println('\n' + "Produto número " + 
-					    umProduto.getId() + " incluído com sucesso!");	
+
+			int opcao = Console.readInt('\n' +
+					"Digite um nÃºmero entre 1 e 5:");
+
+			switch (opcao) {
+				case 1: {
+					name = Console.readLine('\n' + "Informe o nome do produto: ");
+					price = Console.readDouble("Informe o preÃ§o do produto: ");
+
+					aProduct = new Product(name, price);
+
+					productDAO.inclui(aProduct);
+
+					System.out.println('\n' + "Produto nÃºmero " +
+							aProduct.getId() + " incluÃ­do com sucesso!");
 
 					break;
 				}
 
-				case 2:
-				{	int resposta = Console.readInt('\n' + 
-						"Digite o número do produto que você deseja alterar: ");
-										
-					try
-					{	umProduto = produtoDAO.recuperaUmProduto(resposta);
-					}
-					catch(ProdutoNaoEncontradoException e)
-					{	System.out.println('\n' + e.getMessage());
+				case 2: {
+					int resposta = Console.readInt('\n' +
+							"Digite o nÃºmero do produto que vocÃª deseja alterar: ");
+
+					try {
+						aProduct = productDAO.recuperaUmProduto(resposta);
+					} catch (ProdutoNaoEncontradoException e) {
+						System.out.println('\n' + e.getMessage());
 						break;
 					}
-										
-					System.out.println('\n' + 
-						"Número = " + umProduto.getId() + 
-						"    Nome = " + umProduto.getNome() +
-						"    Lance Mínimo = " + umProduto.getLanceMinimo());
-												
-					System.out.println('\n' + "O que você deseja alterar?");
+
+					System.out.println('\n' +
+							"NÃºmero = " + aProduct.getId() +
+							"    Nome = " + aProduct.getName() +
+							"    PreÃ§o = " + aProduct.getPrice());
+
+					System.out.println('\n' + "O que vocÃª deseja alterar?");
 					System.out.println('\n' + "1. Nome");
-					System.out.println("2. Lance Mínimo");
+					System.out.println("2. preÃ§o");
 
-					int opcaoAlteracao = Console.readInt('\n' + 
-											"Digite um número de 1 a 2:");
-					
-					switch (opcaoAlteracao)
-					{	case 1:
-							String novoNome = Console.
-										readLine("Digite o novo nome: ");
-							
-							umProduto.setNome(novoNome);
+					int opcaoAlteracao = Console.readInt('\n' +
+							"Digite um nÃºmero de 1 a 2:");
 
-							try
-							{	produtoDAO.altera(umProduto);
+					switch (opcaoAlteracao) {
+						case 1:
+							String novoNome = Console.readLine("Digite o novo nome: ");
 
-								System.out.println('\n' + 
-									"Alteração de nome efetuada com sucesso!");
+							aProduct.setName(novoNome);
+
+							try {
+								productDAO.altera(aProduct);
+
+								System.out.println('\n' +
+										"AlteraÃƒÂ¯Ã‚Â¿Ã‚Â½ÃƒÂ¯Ã‚Â¿Ã‚Â½o de nome efetuada com sucesso!");
+							} catch (ProdutoNaoEncontradoException e) {
+								System.out.println('\n' + e.getMessage());
 							}
-							catch(ProdutoNaoEncontradoException e)
-							{	System.out.println('\n' + e.getMessage());
-							}
-								
+
 							break;
-					
+
 						case 2:
-							double novoLanceMinimo = Console.
-									readDouble("Digite o novo lance mínimo: ");
-							
-							umProduto.setLanceMinimo(novoLanceMinimo);
+							double newPrice = Console.readDouble("Digite o novo preÃ§o: ");
 
-							try
-							{	produtoDAO.altera(umProduto);
+							aProduct.setPrice(newPrice);
 
-								System.out.println('\n' + 
-									"Alteração de lance mínimo efetuada " +
-									"com sucesso!");						
+							try {
+								productDAO.altera(aProduct);
+
+								System.out.println('\n' +
+										"AlteraÃ§Ã£o de preÃ§o efetuada " +
+										"com sucesso!");
+							} catch (ProdutoNaoEncontradoException e) {
+								System.out.println('\n' + e.getMessage());
 							}
-							catch(ProdutoNaoEncontradoException e)
-							{	System.out.println('\n' + e.getMessage());
-							}
-								
+
 							break;
 
 						default:
-							System.out.println('\n' + "Opção inválida!");
+							System.out.println('\n' + "OpÃƒÂƒÃ‚Â§ÃƒÂƒÃ‚Â£o invÃƒÂƒÃ‚Â¡lida!");
 					}
 
 					break;
 				}
 
-				case 3:
-				{	int resposta = Console.readInt('\n' + 
-						"Digite o número do produto que você deseja remover: ");
-									
-					try
-					{	umProduto = produtoDAO.
-										recuperaUmProduto(resposta);
-					}
-					catch(ProdutoNaoEncontradoException e)
-					{	System.out.println('\n' + e.getMessage());
+				case 3: {
+					int resposta = Console.readInt('\n' +
+							"Digite o nÃºmero do produto que vocÃª deseja remover: ");
+
+					try {
+						aProduct = productDAO.recuperaUmProduto(resposta);
+					} catch (ProdutoNaoEncontradoException e) {
+						System.out.println('\n' + e.getMessage());
 						break;
 					}
-										
-					System.out.println('\n' + 
-						"Número = " + umProduto.getId() + 
-						"    Nome = " + umProduto.getNome());
-														
-					String resp = Console.readLine('\n' + 
-						"Confirma a remoção do produto?");
 
-					if(resp.equals("s"))
-					{	try
-						{	produtoDAO.exclui (umProduto.getId());
-							System.out.println('\n' + 
-								"Produto removido com sucesso!");
+					System.out.println('\n' +
+							"nÃºmero = " + aProduct.getId() +
+							"    Nome = " + aProduct.getName());
+
+					String resp = Console.readLine('\n' +
+							"Confirma a remoÃ§Ã£o do produto?");
+
+					if (resp.equals("s")) {
+						try {
+							productDAO.exclui(aProduct.getId());
+							System.out.println('\n' +
+									"Produto removido com sucesso!");
+						} catch (ProdutoNaoEncontradoException e) {
+							System.out.println('\n' + e.getMessage());
 						}
-						catch(ProdutoNaoEncontradoException e)
-						{	System.out.println('\n' + e.getMessage());
-						}
+					} else {
+						System.out.println('\n' +
+								"Produto nÃ£o removido.");
 					}
-					else
-					{	System.out.println('\n' + 
-							"Produto não removido.");
-					}
-					
+
 					break;
 				}
 
-				case 4:
-				{	
-					List<Produto> produtos = produtoDAO.recuperaProdutos();
+				case 4: {
+					List<Product> products = productDAO.recuperaProdutos();
 
-					for (Produto produto : produtos)
-					{	
-						System.out.println('\n' + 
-							"Id = " + produto.getId() +
-							"  Nome = " + produto.getNome() +
-							"  Lance mínimo = " + produto.getLanceMinimo() +
-							"  Data Cadastro = " + produto.getDataCadastroMasc());
+					for (Product product : products) {
+						System.out.println('\n' +
+								"Id = " + product.getId() +
+								"  Nome = " + product.getName() +
+								"  PreÃ§o = " + product.getPrice());
 					}
-					
+
 					break;
 				}
 
-				case 5:
-				{	continua = false;
+				case 5: {
+					continua = false;
 					break;
 				}
 
 				default:
-					System.out.println('\n' + "Opção inválida!");
+					System.out.println('\n' + "OpÃ§Ã£o invÃ¡lida!");
 			}
-		}		
+		}
 	}
 }

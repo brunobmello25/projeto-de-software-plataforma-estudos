@@ -7,7 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.LockModeType;
 
 public class JPAProdutoDAO implements ProdutoDAO {
-	public long inclui(Produto umProduto) {
+	public long inclui(Product umProduto) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -34,98 +34,84 @@ public class JPAProdutoDAO implements ProdutoDAO {
 		}
 	}
 
-	public void altera(Produto umProduto) throws ProdutoNaoEncontradoException
-	{	
+	public void altera(Product umProduto) throws ProdutoNaoEncontradoException {
 		EntityManager em = null;
 		EntityTransaction tx = null;
-		Produto produto = null;
-		try
-		{	
+		Product produto = null;
+		try {
 			em = FabricaDeEntityManager.criarSessao();
 			tx = em.getTransaction();
 			tx.begin();
-			
+
 			// lock desse registro na tabela de produto pra impedir que
 			// ele seja deletado por outro usuario
-			produto = em.find(Produto.class, umProduto.getId(), LockModeType.PESSIMISTIC_WRITE);
-			
-			if(produto == null)
-			{
+			produto = em.find(Product.class, umProduto.getId(), LockModeType.PESSIMISTIC_WRITE);
+
+			if (produto == null) {
 				tx.rollback();
-				throw new ProdutoNaoEncontradoException("Produto n„o encontrado");
+				throw new ProdutoNaoEncontradoException("Produto n√£o encontrado");
 			}
-			
+
 			em.merge(umProduto);
 			tx.commit();
-		} 
-		catch(RuntimeException e)
-		{ 
-			if (tx != null)
-		    {   
-				try
-		        {	tx.rollback();
-		        }
-		        catch(RuntimeException he)
-		        { }
-		    }
-		    throw e;
-		}
-		finally
-		{   em.close();
+		} catch (RuntimeException e) {
+			if (tx != null) {
+				try {
+					tx.rollback();
+				} catch (RuntimeException he) {
+				}
+			}
+			throw e;
+		} finally {
+			em.close();
 		}
 	}
 
-	public void exclui(long numero) throws ProdutoNaoEncontradoException 
-	{	EntityManager em = null;
+	public void exclui(long numero) throws ProdutoNaoEncontradoException {
+		EntityManager em = null;
 		EntityTransaction tx = null;
-		
-		try
-		{	
+
+		try {
 			em = FabricaDeEntityManager.criarSessao();
 			tx = em.getTransaction();
 			tx.begin();
 
-			Produto produto = em.find(Produto.class, Long.valueOf(numero), LockModeType.PESSIMISTIC_WRITE);
-			
-			if(produto == null)
-			{	tx.rollback();
-				throw new ProdutoNaoEncontradoException("Produto n„o encontrado");
+			Product produto = em.find(Product.class, Long.valueOf(numero), LockModeType.PESSIMISTIC_WRITE);
+
+			if (produto == null) {
+				tx.rollback();
+				throw new ProdutoNaoEncontradoException("Produto n√£o encontrado");
 			}
 
 			em.remove(produto);
 			tx.commit();
-		} 
-		catch(RuntimeException e)
-		{   
-			if (tx != null)
-		    {   
-				try
-		        {	tx.rollback();
-		        }
-		        catch(RuntimeException he)
-		        { }
-		    }
-		    throw e;
-		}
-		finally
-		{   em.close();
+		} catch (RuntimeException e) {
+			if (tx != null) {
+				try {
+					tx.rollback();
+				} catch (RuntimeException he) {
+				}
+			}
+			throw e;
+		} finally {
+			em.close();
 		}
 	}
 
-	public Produto recuperaUmProduto(long numero) throws ProdutoNaoEncontradoException {
+	public Product recuperaUmProduto(long numero) throws ProdutoNaoEncontradoException {
 		EntityManager em = null;
 
 		try {
 			em = FabricaDeEntityManager.criarSessao();
 
-			Produto umProduto = em.find(Produto.class, numero);
+			Product umProduto = em.find(Product.class, numero);
 
-			// CaracterÌsticas no mÈtodo find():
-			// 1. … genÈrico: n„o requer um cast.
-			// 2. Retorna null caso a linha n„o seja encontrada no banco.
+			// Caracter√≠sticas no m√©todo find():
+			// 1. √â gen√©rico: n√£o requer um cast.
+			// 2. Retorna null caso a linha n√£o seja encontrada no banco.
 
 			if (umProduto == null) {
-				throw new ProdutoNaoEncontradoException("Produto n„o encontrado");
+				throw new ProdutoNaoEncontradoException("Produto n√£o encontrado");
 			}
 
 			return umProduto;
@@ -134,14 +120,14 @@ public class JPAProdutoDAO implements ProdutoDAO {
 		}
 	}
 
-	public List<Produto> recuperaProdutos() {
+	public List<Product> recuperaProdutos() {
 		EntityManager em = null;
 
 		try {
 			em = FabricaDeEntityManager.criarSessao();
 
 			@SuppressWarnings("unchecked")
-			List<Produto> produtos = em.createQuery("select p from Produto p order by p.id").getResultList();
+			List<Product> produtos = em.createQuery("select p from Produto p order by p.id").getResultList();
 
 			return produtos;
 		} finally {
