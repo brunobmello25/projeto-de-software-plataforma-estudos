@@ -1,6 +1,6 @@
 package exercicio;
 
-import java.sql.Date;
+// import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +16,8 @@ public class Product {
 	private Long id;
 	private String name;
 	private double price;
-	private Date createdAt;
-	private Date updatedAt;
+	// private Date createdAt;
+	// private Date updatedAt;
 
 	public Product() {
 	}
@@ -44,15 +44,17 @@ public class Product {
 		return price;
 	}
 
-	@Column()
-	public Date getCreatedAt() {
-		return createdAt;
-	}
+	// @Column()
+	// @GeneratedValue(strategy = GenerationType.AUTO)
+	// public Date getCreatedAt() {
+	// return createdAt;
+	// }
 
-	@Column()
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
+	// @Column()
+	// @GeneratedValue(strategy = GenerationType.AUTO)
+	// public Date getUpdatedAt() {
+	// return updatedAt;
+	// }
 
 	@Transient
 	public String getFormattedPrice() {
@@ -71,4 +73,14 @@ public class Product {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	// @SuppressWarnings("unused")
+	// private void setCreatedAt(Date createdAt) {
+	// this.createdAt = createdAt;
+	// }
+
+	// @SuppressWarnings("unused")
+	// private void setUpdatedAt(Date updatedAt) {
+	// this.updatedAt = updatedAt;
+	// }
 }

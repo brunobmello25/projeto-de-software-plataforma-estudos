@@ -3,13 +3,13 @@ package exercicio;
 import java.util.List;
 import corejava.Console;
 
-public class Principal {
+public class Main {
 	public static void main(String[] args) {
 		String name;
 		double price;
 		Product aProduct;
 
-		ProdutoDAO productDAO = FabricaDeDAOs.getDAO(ProdutoDAO.class);
+		ProductDAO productDAO = DAOFactory.getDAO(ProductDAO.class);
 
 		boolean continua = true;
 		while (continua) {
@@ -30,7 +30,7 @@ public class Principal {
 
 					aProduct = new Product(name, price);
 
-					productDAO.inclui(aProduct);
+					productDAO.insert(aProduct);
 
 					System.out.println('\n' + "Produto número " +
 							aProduct.getId() + " incluído com sucesso!");
@@ -43,23 +43,23 @@ public class Principal {
 							"Digite o número do produto que você deseja alterar: ");
 
 					try {
-						aProduct = productDAO.recuperaUmProduto(resposta);
-					} catch (ProdutoNaoEncontradoException e) {
+						aProduct = productDAO.findById(resposta);
+					} catch (ProductNotFoundException e) {
 						System.out.println('\n' + e.getMessage());
 						break;
 					}
 
 					System.out.println('\n' +
-							"Número = " + aProduct.getId() +
+							"NÃÂºmero = " + aProduct.getId() +
 							"    Nome = " + aProduct.getName() +
-							"    Preço = " + aProduct.getPrice());
+							"    PreÃÂ§o = " + aProduct.getPrice());
 
-					System.out.println('\n' + "O que você deseja alterar?");
+					System.out.println('\n' + "O que vocÃÂª deseja alterar?");
 					System.out.println('\n' + "1. Nome");
-					System.out.println("2. preço");
+					System.out.println("2. preÃÂ§o");
 
 					int opcaoAlteracao = Console.readInt('\n' +
-							"Digite um número de 1 a 2:");
+							"Digite um nÃÂºmero de 1 a 2:");
 
 					switch (opcaoAlteracao) {
 						case 1:
@@ -68,11 +68,11 @@ public class Principal {
 							aProduct.setName(novoNome);
 
 							try {
-								productDAO.altera(aProduct);
+								productDAO.update(aProduct);
 
 								System.out.println('\n' +
-										"AlteraÃ¯Â¿Â½Ã¯Â¿Â½o de nome efetuada com sucesso!");
-							} catch (ProdutoNaoEncontradoException e) {
+										"Alteração de nome efetuada com sucesso!");
+							} catch (ProductNotFoundException e) {
 								System.out.println('\n' + e.getMessage());
 							}
 
@@ -84,19 +84,20 @@ public class Principal {
 							aProduct.setPrice(newPrice);
 
 							try {
-								productDAO.altera(aProduct);
+								productDAO.update(aProduct);
 
 								System.out.println('\n' +
 										"Alteração de preço efetuada " +
 										"com sucesso!");
-							} catch (ProdutoNaoEncontradoException e) {
+							} catch (ProductNotFoundException e) {
 								System.out.println('\n' + e.getMessage());
 							}
 
 							break;
 
 						default:
-							System.out.println('\n' + "OpÃÂ§ÃÂ£o invÃÂ¡lida!");
+							System.out.println('\n'
+									+ "OpÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o invÃÂÃÂÃÂÃÂ¡lida!");
 					}
 
 					break;
@@ -104,28 +105,28 @@ public class Principal {
 
 				case 3: {
 					int resposta = Console.readInt('\n' +
-							"Digite o número do produto que você deseja remover: ");
+							"Digite o nÃÂºmero do produto que vocÃÂª deseja remover: ");
 
 					try {
-						aProduct = productDAO.recuperaUmProduto(resposta);
-					} catch (ProdutoNaoEncontradoException e) {
+						aProduct = productDAO.findById(resposta);
+					} catch (ProductNotFoundException e) {
 						System.out.println('\n' + e.getMessage());
 						break;
 					}
 
 					System.out.println('\n' +
-							"número = " + aProduct.getId() +
+							"nÃºmero = " + aProduct.getId() +
 							"    Nome = " + aProduct.getName());
 
 					String resp = Console.readLine('\n' +
-							"Confirma a remoção do produto?");
+							"Confirma a remoÃ§Ã£o do produto?");
 
 					if (resp.equals("s")) {
 						try {
-							productDAO.exclui(aProduct.getId());
+							productDAO.delete(aProduct.getId());
 							System.out.println('\n' +
 									"Produto removido com sucesso!");
-						} catch (ProdutoNaoEncontradoException e) {
+						} catch (ProductNotFoundException e) {
 							System.out.println('\n' + e.getMessage());
 						}
 					} else {
@@ -137,7 +138,7 @@ public class Principal {
 				}
 
 				case 4: {
-					List<Product> products = productDAO.recuperaProdutos();
+					List<Product> products = productDAO.findAll();
 
 					for (Product product : products) {
 						System.out.println('\n' +
