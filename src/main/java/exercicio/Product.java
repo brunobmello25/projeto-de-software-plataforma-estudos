@@ -10,7 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 @Entity
+@DynamicInsert // gera sql de insert com apenas os campos modificados
+@DynamicUpdate // gera sql de update com apenas os campos modificados
 @Table(name = "product")
 public class Product {
 	private Long id;
