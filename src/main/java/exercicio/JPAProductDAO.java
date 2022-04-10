@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.LockModeType;
+import javax.persistence.OptimisticLockException;
 
 public class JPAProductDAO implements ProductDAO {
 	public long insert(Product product) {
@@ -34,7 +35,7 @@ public class JPAProductDAO implements ProductDAO {
 		}
 	}
 
-	public void update(Product product) throws ProductNotFoundException {
+	public void update(Product product) throws ProductNotFoundException, ObjectStateObsoleteException {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 		Product databaseProduct = null;
@@ -53,6 +54,11 @@ public class JPAProductDAO implements ProductDAO {
 
 			em.merge(product);
 			tx.commit();
+		} catch (OptimisticLockException e) {
+			if (tx != null) {
+				tx.rollback();
+			}
+			throw new ObjectStateObsoleteException();
 		} catch (RuntimeException e) {
 			if (tx != null) {
 				try {

@@ -6,7 +6,7 @@ public interface ProductDAO {
 	long insert(Product product);
 
 	void update(Product product)
-			throws ProductNotFoundException;
+			throws ProductNotFoundException, ObjectStateObsoleteException;
 
 	void delete(long id)
 			throws ProductNotFoundException;

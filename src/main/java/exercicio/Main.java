@@ -91,6 +91,9 @@ public class Main {
 			productDAO.update(productToUpdate);
 
 			System.out.println("\nProduto atualizado com sucesso!");
+		} catch (ObjectStateObsoleteException e) {
+			String message = "\nA operacao nao foi efetuada: os dados que voce tentou salvar foram modificados por outro usuario";
+			System.out.println(message);
 		} catch (ProductNotFoundException e) {
 			System.out.println('\n' + e.getMessage());
 			return;

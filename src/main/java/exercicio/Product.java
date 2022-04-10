@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
@@ -21,6 +22,7 @@ public class Product {
 	private Long id;
 	private String name;
 	private double price;
+	private int version;
 	// private Date createdAt;
 	// private Date updatedAt;
 
@@ -66,6 +68,11 @@ public class Product {
 		return Util.doubleToStr(price);
 	}
 
+	@Version
+	public int getVersion() {
+		return version;
+	}
+
 	@SuppressWarnings("unused")
 	private void setId(Long id) {
 		this.id = id;
@@ -81,7 +88,11 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + ", nome=" + name + ", preco=R$" + price + "]";
+		return "Produto [id=" + id + ", nome=" + name + ", preco=R$" + price + ", versao=" + version + "]";
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	// @SuppressWarnings("unused")
