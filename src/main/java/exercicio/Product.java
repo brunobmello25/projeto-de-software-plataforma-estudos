@@ -74,6 +74,11 @@ public class Product {
 		this.price = price;
 	}
 
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", nome=" + name + ", preco=R$" + price + "]";
+	}
+
 	// @SuppressWarnings("unused")
 	// private void setCreatedAt(Date createdAt) {
 	// this.createdAt = createdAt;

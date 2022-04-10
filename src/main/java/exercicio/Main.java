@@ -4,160 +4,134 @@ import java.util.List;
 import corejava.Console;
 
 public class Main {
+	static ProductDAO productDAO = DAOFactory.getDAO(ProductDAO.class);
+
 	public static void main(String[] args) {
-		String name;
-		double price;
-		Product aProduct;
 
-		ProductDAO productDAO = DAOFactory.getDAO(ProductDAO.class);
+		boolean loop = true;
+		while (loop) {
+			int option = getOption();
 
-		boolean continua = true;
-		while (continua) {
-			System.out.println('\n' + "O que você deseja fazer?");
-			System.out.println('\n' + "1. Cadastrar um produto");
-			System.out.println("2. Alterar um produto");
-			System.out.println("3. Remover um produto");
-			System.out.println("4. Listar todos os produtos");
-			System.out.println("5. Sair");
+			System.out.println();
 
-			int opcao = Console.readInt('\n' +
-					"Digite um número entre 1 e 5:");
+			if (option == 1)
+				insertProduct();
+			else if (option == 2)
+				updatedProduct();
+			else if (option == 3)
+				deleteProduct();
+			else if (option == 4)
+				listProducts();
+			else if (option == 5)
+				loop = false;
+			else
+				System.out.println("\nOpcao invalida!");
+		}
 
-			switch (opcao) {
-				case 1: {
-					name = Console.readLine('\n' + "Informe o nome do produto: ");
-					price = Console.readDouble("Informe o preço do produto: ");
+		System.out.println("\nAte a proxima!");
+	}
 
-					aProduct = new Product(name, price);
+	private static int getOption() {
+		System.out.println("\nO que voce deseja fazer?\n");
+		System.out.println("1. Cadastrar um produto");
+		System.out.println("2. Alterar um produto");
+		System.out.println("3. Remover um produto");
+		System.out.println("4. Listar todos os produtos");
+		System.out.println("5. Sair");
 
-					productDAO.insert(aProduct);
+		int option = Console.readInt("\nDigite um numero entre 1 e 5:");
 
-					System.out.println('\n' + "Produto número " +
-							aProduct.getId() + " incluído com sucesso!");
+		return option;
+	}
 
-					break;
-				}
+	private static void insertProduct() {
+		String name = Console.readLine('\n' + "Informe o nome do produto: ");
+		double price = Console.readDouble("Informe o preco do produto: ");
 
-				case 2: {
-					int resposta = Console.readInt('\n' +
-							"Digite o número do produto que você deseja alterar: ");
+		Product product = new Product(name, price);
 
-					try {
-						aProduct = productDAO.findById(resposta);
-					} catch (ProductNotFoundException e) {
-						System.out.println('\n' + e.getMessage());
-						break;
-					}
+		productDAO.insert(product);
 
-					System.out.println('\n' +
-							"NÃÂºmero = " + aProduct.getId() +
-							"    Nome = " + aProduct.getName() +
-							"    PreÃÂ§o = " + aProduct.getPrice());
+		System.out.println("\nProduto numero" + product.getId() + " incluido com sucesso!");
+	}
 
-					System.out.println('\n' + "O que vocÃÂª deseja alterar?");
-					System.out.println('\n' + "1. Nome");
-					System.out.println("2. preÃÂ§o");
+	private static void updatedProduct() {
+		int idOfProductToUpdate = Console.readInt("Digite o numero do produto que voce deseja alterar: ");
+		Product productToUpdate;
 
-					int opcaoAlteracao = Console.readInt('\n' +
-							"Digite um nÃÂºmero de 1 a 2:");
+		try {
+			productToUpdate = productDAO.findById(idOfProductToUpdate);
+		} catch (ProductNotFoundException e) {
+			System.out.println('\n' + e.getMessage());
+			return;
+		}
 
-					switch (opcaoAlteracao) {
-						case 1:
-							String novoNome = Console.readLine("Digite o novo nome: ");
+		System.out.println(productToUpdate);
 
-							aProduct.setName(novoNome);
+		System.out.println("O que voce deseja alterar?\n");
+		System.out.println("1. Nome");
+		System.out.println("2. preco");
 
-							try {
-								productDAO.update(aProduct);
+		int optionToUpdate = Console.readInt("\nDigite um numero de 1 a 2:");
 
-								System.out.println('\n' +
-										"Alteração de nome efetuada com sucesso!");
-							} catch (ProductNotFoundException e) {
-								System.out.println('\n' + e.getMessage());
-							}
+		if (optionToUpdate == 1) {
+			String newName = Console.readLine("Digite o novo nome: ");
 
-							break;
+			productToUpdate.setName(newName);
+		} else if (optionToUpdate == 2) {
+			double newPrice = Console.readDouble("Digite o novo preco: ");
 
-						case 2:
-							double newPrice = Console.readDouble("Digite o novo preço: ");
+			productToUpdate.setPrice(newPrice);
+		} else {
+			System.out.println("Opção inválida!");
+			return;
+		}
 
-							aProduct.setPrice(newPrice);
+		try {
+			productDAO.update(productToUpdate);
 
-							try {
-								productDAO.update(aProduct);
+			System.out.println("\nProduto atualizado com sucesso!");
+		} catch (ProductNotFoundException e) {
+			System.out.println('\n' + e.getMessage());
+			return;
+		}
 
-								System.out.println('\n' +
-										"Alteração de preço efetuada " +
-										"com sucesso!");
-							} catch (ProductNotFoundException e) {
-								System.out.println('\n' + e.getMessage());
-							}
+	}
 
-							break;
+	private static void deleteProduct() {
+		int idOfProductToDelete = Console.readInt("Digite o numero do produto que voce deseja remover: ");
+		Product productToDelete;
 
-						default:
-							System.out.println('\n'
-									+ "OpÃÂÃÂÃÂÃÂ§ÃÂÃÂÃÂÃÂ£o invÃÂÃÂÃÂÃÂ¡lida!");
-					}
+		try {
+			productToDelete = productDAO.findById(idOfProductToDelete);
+		} catch (ProductNotFoundException e) {
+			System.out.println('\n' + e.getMessage());
+			return;
+		}
 
-					break;
-				}
+		System.out.println(productToDelete);
 
-				case 3: {
-					int resposta = Console.readInt('\n' +
-							"Digite o nÃÂºmero do produto que vocÃÂª deseja remover: ");
+		String confirmation = Console.readLine("Confirma a remocao do produto? (s/n)");
 
-					try {
-						aProduct = productDAO.findById(resposta);
-					} catch (ProductNotFoundException e) {
-						System.out.println('\n' + e.getMessage());
-						break;
-					}
+		if (confirmation.toLowerCase().equals("s")) {
+			try {
+				productDAO.delete(productToDelete.getId());
 
-					System.out.println('\n' +
-							"nÃºmero = " + aProduct.getId() +
-							"    Nome = " + aProduct.getName());
-
-					String resp = Console.readLine('\n' +
-							"Confirma a remoÃ§Ã£o do produto?");
-
-					if (resp.equals("s")) {
-						try {
-							productDAO.delete(aProduct.getId());
-							System.out.println('\n' +
-									"Produto removido com sucesso!");
-						} catch (ProductNotFoundException e) {
-							System.out.println('\n' + e.getMessage());
-						}
-					} else {
-						System.out.println('\n' +
-								"Produto não removido.");
-					}
-
-					break;
-				}
-
-				case 4: {
-					List<Product> products = productDAO.findAll();
-
-					for (Product product : products) {
-						System.out.println('\n' +
-								"Id = " + product.getId() +
-								"  Nome = " + product.getName() +
-								"  Preço = " + product.getPrice());
-					}
-
-					break;
-				}
-
-				case 5: {
-					continua = false;
-					break;
-				}
-
-				default:
-					System.out.println('\n' + "Opção inválida!");
+				System.out.println('\n' + "Produto removido com sucesso!");
+			} catch (ProductNotFoundException e) {
+				System.out.println('\n' + e.getMessage());
 			}
+		} else {
+			System.out.println("\nProduto não removido.");
+		}
+	}
+
+	private static void listProducts() {
+		List<Product> products = productDAO.findAll();
+
+		System.out.println("\n--- Produtos ---");
+		for (Product product : products) {
+			System.out.println(product);
 		}
 	}
 }
