@@ -7,7 +7,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.LockModeType;
 
 public class JPAProductDAO implements ProductDAO {
-	public long insert(Product aProduct) {
+	public long insert(Product product) {
 		EntityManager em = null;
 		EntityTransaction tx = null;
 
@@ -16,11 +16,11 @@ public class JPAProductDAO implements ProductDAO {
 			tx = em.getTransaction();
 			tx.begin();
 
-			em.persist(aProduct);
+			em.persist(product);
 
 			tx.commit();
 
-			return aProduct.getId();
+			return product.getId();
 		} catch (RuntimeException e) {
 			if (tx != null) {
 				try {
@@ -34,23 +34,24 @@ public class JPAProductDAO implements ProductDAO {
 		}
 	}
 
-	public void update(Product aProduct) throws ProductNotFoundException {
+	public void update(Product product) throws ProductNotFoundException {
 		EntityManager em = null;
 		EntityTransaction tx = null;
-		Product product = null;
+		Product databaseProduct = null;
+
 		try {
 			em = MyEntityManagerFactory.createSession();
 			tx = em.getTransaction();
 			tx.begin();
 
-			product = em.find(Product.class, aProduct.getId(), LockModeType.PESSIMISTIC_WRITE);
+			databaseProduct = em.find(Product.class, product.getId(), LockModeType.PESSIMISTIC_WRITE);
 
-			if (product == null) {
+			if (databaseProduct == null) {
 				tx.rollback();
-				throw new ProductNotFoundException("Produto não encontrado");
+				throw new ProductNotFoundException("Produto nao encontrado");
 			}
 
-			em.merge(aProduct);
+			em.merge(product);
 			tx.commit();
 		} catch (RuntimeException e) {
 			if (tx != null) {
@@ -78,7 +79,7 @@ public class JPAProductDAO implements ProductDAO {
 
 			if (product == null) {
 				tx.rollback();
-				throw new ProductNotFoundException("Produto não encontrado");
+				throw new ProductNotFoundException("Produto nao encontrado");
 			}
 
 			em.remove(product);
@@ -102,13 +103,13 @@ public class JPAProductDAO implements ProductDAO {
 		try {
 			em = MyEntityManagerFactory.createSession();
 
-			Product aProduct = em.find(Product.class, id);
+			Product product = em.find(Product.class, id);
 
-			if (aProduct == null) {
-				throw new ProductNotFoundException("Produto não encontrado");
+			if (product == null) {
+				throw new ProductNotFoundException("Produto nao encontrado");
 			}
 
-			return aProduct;
+			return product;
 		} finally {
 			em.close();
 		}
