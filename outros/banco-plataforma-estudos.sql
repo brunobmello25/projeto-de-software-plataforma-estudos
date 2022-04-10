@@ -1,10 +1,10 @@
----------- CRIA O BANCO ----------
+-- CRIA O BANCO ----------
 
 CREATE DATABASE plataforma_estudos;
 
 
 
----------- CRIA AS TABELAS ----------
+-- CRIA AS TABELAS ----------
 
 CREATE TABLE plataforma_estudos.product (
   id INT NOT NULL AUTO_INCREMENT,
@@ -19,7 +19,13 @@ CHARACTER SET utf8mb4;
 
 
 
----------- INSERE DADOS NO BANCO ----------
+-- INSERE DADOS NO BANCO ----------
 
 INSERT INTO plataforma_estudos.product(name, price) VALUES ('Produto Base', 20.00);
 UPDATE plataforma_estudos.product SET name='Produto Base' WHERE id=1;
+
+-- CONFIGURANDO LOCK OTIMISTA ----------
+
+ALTER TABLE plataforma_estudos.product ADD COLUMN (
+    version INT NOT NULL DEFAULT 0
+    )
