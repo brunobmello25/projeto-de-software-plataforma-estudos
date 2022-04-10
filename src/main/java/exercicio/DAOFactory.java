@@ -15,25 +15,24 @@ public class DAOFactory {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public static <T> T getDAO(Class<T> tipo) {
+	public static <T> T getDAO(Class<T> classType) {
 		T dao = null;
-		String nomeDaClasse = null;
+		String className = null;
 
 		try {
-			nomeDaClasse = prop.getString(tipo.getSimpleName());
-			dao = (T) Class.forName(nomeDaClasse).newInstance();
+			className = prop.getString(classType.getSimpleName());
+			dao = (T) Class.forName(className).newInstance();
 		} catch (InstantiationException e) {
-			System.out.println("N�o foi poss�vel criar um objeto do tipo " + nomeDaClasse);
+			System.out.println("Nao foi possivel criar um objeto do tipo " + className);
 			throw new RuntimeException(e);
 		} catch (IllegalAccessException e) {
-			System.out.println("N�o foi poss�vel criar um objeto do tipo " + nomeDaClasse);
+			System.out.println("Nao foi possivel criar um objeto do tipo " + className);
 			throw new RuntimeException(e);
 		} catch (ClassNotFoundException e) {
-			System.out.println("Classe " + nomeDaClasse + " n�o encontrada");
+			System.out.println("Classe " + className + " nao encontrada");
 			throw new RuntimeException(e);
 		} catch (MissingResourceException e) {
-			System.out.println("Chave " + tipo + " não encontrada em dao.properties");
+			System.out.println("Chave " + classType + " nao encontrada em dao.properties");
 			throw new RuntimeException(e);
 		}
 
