@@ -1,18 +1,25 @@
-DROP TABLE PRODUTO;
+---------- CRIA O BANCO ----------
 
-CREATE TABLE banco.produto (
+CREATE DATABASE plataforma_estudos;
+
+
+
+---------- CRIA AS TABELAS ----------
+
+CREATE TABLE plataforma_estudos.product (
   id INT NOT NULL AUTO_INCREMENT,
-  nome VARCHAR(30) NOT NULL,
-  lance_minimo DECIMAL(8, 2) NOT NULL,
-  data_cadastro DATE NOT NULL,
-  data_venda DATE DEFAULT NULL,
+  name VARCHAR(255) NOT NULL,
+  price DECIMAL(8, 2) NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 )
 ENGINE = INNODB
 CHARACTER SET utf8mb4;
 
-INSERT INTO PRODUTO(NOME, LANCE_MINIMO, DATA_CADASTRO)
-VALUES('TV SAMSUNG 20 POL', 2000, curdate());
 
-INSERT INTO PRODUTO(NOME, LANCE_MINIMO, DATA_CADASTRO)
-VALUES('TV SAMSUNG 22 POL', 2500, curdate());
+
+---------- INSERE DADOS NO BANCO ----------
+
+INSERT INTO plataforma_estudos.product(name, price) VALUES ('Produto Base', 20.00);
+UPDATE plataforma_estudos.product SET name='Produto Base' WHERE id=1;
