@@ -1,0 +1,244 @@
+!SESSION 2022-04-03 23:11:29.428 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.15
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:30.779
+!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is started
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.008
+!MESSAGE Main thread is waiting
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.048
+!MESSAGE >> initialize
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.049
+!MESSAGE Initializing Java Language Server 1.9.0.202203031534
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.065
+!MESSAGE Static Commands: []
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.065
+!MESSAGE Non-Static Commands: [java.edit.organizeImports, java.project.refreshDiagnostics, java.project.import, java.navigate.openTypeHierarchy, java.project.removeFromSourcePath, java.project.listSourcePaths, java.project.resolveStackTraceLocation, java.project.getAll, java.project.isTestFile, java.project.getClasspaths, java.navigate.resolveTypeHierarchy, java.edit.stringFormatting, java.project.getSettings, java.project.updateSourceAttachment, java.project.upgradeGradle, java.project.resolveSourceAttachment, java.project.addToSourcePath]
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.070
+!MESSAGE Wait for AutoBuildOffJob start
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.071
+!MESSAGE Wait for AutoBuildOffJob end 1ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.071
+!MESSAGE Starting org.eclipse.m2e.core
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.072
+!MESSAGE Started org.eclipse.m2e.core 1ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.073
+!MESSAGE ProjectRegistryRefreshJob finished 0ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.073
+!MESSAGE Starting org.eclipse.buildship.core
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.089
+!MESSAGE Started org.eclipse.buildship.core 16ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.120
+!MESSAGE LoadingGradleVersionJob finished 31ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.149
+!MESSAGE >> initialized
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.150
+!MESSAGE Creating the Java project jdt.ls-java-project
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.246
+!MESSAGE Finished creating the Java project jdt.ls-java-project
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:31.662
+!MESSAGE Importing Maven project(s)
+
+!ENTRY org.eclipse.jdt.ls.core 4 0 2022-04-03 23:11:32.179
+!MESSAGE Initialization failed 
+!STACK 1
+org.eclipse.core.runtime.CoreException: Failed to import projects
+	at org.eclipse.jdt.ls.core.internal.managers.ProjectsManager.importProjects(ProjectsManager.java:136)
+	at org.eclipse.jdt.ls.core.internal.managers.ProjectsManager.initializeProjects(ProjectsManager.java:107)
+	at org.eclipse.jdt.ls.core.internal.handlers.InitHandler$1.runInWorkspace(InitHandler.java:244)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Contains: Invalid project description.
+Contains: OK
+Contains: /home/brubs/eclipse-workspace/Exercicio01-Produto-Inclui-Altera-Exclui overlaps the workspace location: /home/brubs/eclipse-workspace/Exercicio01-Produto-Inclui-Altera-Exclui/workspace
+!SUBENTRY 1 org.eclipse.jdt.ls.core 4 -1 2022-04-03 23:11:32.180
+!MESSAGE Failed to import projects
+!SUBENTRY 2 org.eclipse.core.resources 4 77 2022-04-03 23:11:32.180
+!MESSAGE Invalid project description.
+!SUBENTRY 3 unknown 0 0 2022-04-03 23:11:32.180
+!MESSAGE OK
+!SUBENTRY 3 org.eclipse.core.resources 4 77 2022-04-03 23:11:32.180
+!MESSAGE /home/brubs/eclipse-workspace/Exercicio01-Produto-Inclui-Altera-Exclui overlaps the workspace location: /home/brubs/eclipse-workspace/Exercicio01-Produto-Inclui-Altera-Exclui/workspace
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:32.228
+!MESSAGE >> initialization job finished
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:32.235
+!MESSAGE >> document/didOpen
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:32.263
+!MESSAGE >> build jobs finished
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:32.269
+!MESSAGE >> registerWatchers'
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:32.269
+!MESSAGE >> watchers registered
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:32.951
+!MESSAGE Reconciled 1. Took 10 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:33.562
+!MESSAGE >> shutdown
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:33.565
+!MESSAGE >> exit
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:33.654
+!MESSAGE begin problem for /Principal.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:33.655
+!MESSAGE 1 problems reported for /Principal.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:33.658
+!MESSAGE Validated 1. Took 257 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:33.681
+!MESSAGE Shutdown received... waking up main thread
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:33.684
+!MESSAGE >> document/didOpen
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:11:33.689
+!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is stopping:
+
+!ENTRY org.eclipse.core.jobs 4 2 2022-04-03 23:11:34.192
+!MESSAGE An internal error occurred during: "Publish Diagnostics".
+!STACK 0
+java.lang.NullPointerException
+	at org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin.getProjectsManager(JavaLanguageServerPlugin.java:491)
+	at org.eclipse.jdt.ls.core.internal.JDTUtils.isDefaultProject(JDTUtils.java:1164)
+	at org.eclipse.jdt.ls.core.internal.handlers.BaseDiagnosticsHandler.<init>(BaseDiagnosticsHandler.java:57)
+	at org.eclipse.jdt.ls.core.internal.handlers.DiagnosticsHandler.<init>(DiagnosticsHandler.java:32)
+	at org.eclipse.jdt.ls.core.internal.handlers.DocumentLifeCycleHandler.createDiagnosticsHandler(DocumentLifeCycleHandler.java:44)
+	at org.eclipse.jdt.ls.core.internal.handlers.BaseDocumentLifeCycleHandler.publishDiagnostics(BaseDocumentLifeCycleHandler.java:257)
+	at org.eclipse.jdt.ls.core.internal.handlers.BaseDocumentLifeCycleHandler.publishDiagnostics(BaseDocumentLifeCycleHandler.java:249)
+	at org.eclipse.jdt.ls.core.internal.handlers.BaseDocumentLifeCycleHandler$2.runInWorkspace(BaseDocumentLifeCycleHandler.java:117)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+!SESSION 2022-04-03 23:12:38.067 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=11.0.15
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:39.251
+!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is started
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:39.422
+!MESSAGE Main thread is waiting
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:39.468
+!MESSAGE >> initialize
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:39.470
+!MESSAGE Initializing Java Language Server 1.9.0.202203031534
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:39.483
+!MESSAGE Static Commands: []
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:39.483
+!MESSAGE Non-Static Commands: [java.edit.organizeImports, java.project.refreshDiagnostics, java.project.import, java.navigate.openTypeHierarchy, java.project.removeFromSourcePath, java.project.listSourcePaths, java.project.resolveStackTraceLocation, java.project.getAll, java.project.isTestFile, java.project.getClasspaths, java.navigate.resolveTypeHierarchy, java.edit.stringFormatting, java.project.getSettings, java.project.updateSourceAttachment, java.project.upgradeGradle, java.project.resolveSourceAttachment, java.project.addToSourcePath]
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:39.488
+!MESSAGE Starting org.eclipse.m2e.core
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:39.488
+!MESSAGE Started org.eclipse.m2e.core 0ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:39.489
+!MESSAGE ProjectRegistryRefreshJob finished 1ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:39.489
+!MESSAGE Starting org.eclipse.buildship.core
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:39.506
+!MESSAGE Started org.eclipse.buildship.core 17ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:39.517
+!MESSAGE LoadingGradleVersionJob finished 11ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:39.560
+!MESSAGE >> initialized
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:40.017
+!MESSAGE Importing Maven project(s)
+
+!ENTRY org.eclipse.jdt.ls.core 4 0 2022-04-03 23:12:40.557
+!MESSAGE Initialization failed 
+!STACK 1
+org.eclipse.core.runtime.CoreException: Failed to import projects
+	at org.eclipse.jdt.ls.core.internal.managers.ProjectsManager.importProjects(ProjectsManager.java:136)
+	at org.eclipse.jdt.ls.core.internal.managers.ProjectsManager.initializeProjects(ProjectsManager.java:107)
+	at org.eclipse.jdt.ls.core.internal.handlers.InitHandler$1.runInWorkspace(InitHandler.java:244)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:42)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Contains: Invalid project description.
+Contains: OK
+Contains: /home/brubs/eclipse-workspace/Exercicio01-Produto-Inclui-Altera-Exclui overlaps the workspace location: /home/brubs/eclipse-workspace/Exercicio01-Produto-Inclui-Altera-Exclui/workspace
+!SUBENTRY 1 org.eclipse.jdt.ls.core 4 -1 2022-04-03 23:12:40.558
+!MESSAGE Failed to import projects
+!SUBENTRY 2 org.eclipse.core.resources 4 77 2022-04-03 23:12:40.558
+!MESSAGE Invalid project description.
+!SUBENTRY 3 unknown 0 0 2022-04-03 23:12:40.558
+!MESSAGE OK
+!SUBENTRY 3 org.eclipse.core.resources 4 77 2022-04-03 23:12:40.558
+!MESSAGE /home/brubs/eclipse-workspace/Exercicio01-Produto-Inclui-Altera-Exclui overlaps the workspace location: /home/brubs/eclipse-workspace/Exercicio01-Produto-Inclui-Altera-Exclui/workspace
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:40.585
+!MESSAGE >> initialization job finished
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:40.592
+!MESSAGE >> document/didOpen
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:40.599
+!MESSAGE >> build jobs finished
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:40.602
+!MESSAGE >> registerWatchers'
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:40.602
+!MESSAGE >> watchers registered
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:41.141
+!MESSAGE Reconciled 1. Took 10 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:41.652
+!MESSAGE begin problem for /Principal.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:41.652
+!MESSAGE 1 problems reported for /Principal.java
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:12:41.656
+!MESSAGE Validated 1. Took 113 ms
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:13:38.598
+!MESSAGE >> shutdown
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:13:38.603
+!MESSAGE >> exit
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:13:38.632
+!MESSAGE Shutdown received... waking up main thread
+
+!ENTRY org.eclipse.jdt.ls.core 1 0 2022-04-03 23:13:38.641
+!MESSAGE class org.eclipse.jdt.ls.core.internal.JavaLanguageServerPlugin is stopping:
