@@ -1,6 +1,6 @@
 package exercicio;
 
-// import java.sql.Date;
+ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,8 +23,8 @@ public class Product {
 	private String name;
 	private double price;
 	private int version;
-	// private Date createdAt;
-	// private Date updatedAt;
+	 private Date createdAt;
+	 private Date updatedAt;
 
 	public Product() {
 	}
@@ -51,17 +51,17 @@ public class Product {
 		return price;
 	}
 
-	// @Column()
-	// @GeneratedValue(strategy = GenerationType.AUTO)
-	// public Date getCreatedAt() {
-	// return createdAt;
-	// }
+	 @Column(name="created_at", insertable = false, updatable = false)
+	 @GeneratedValue(strategy = GenerationType.AUTO)
+	 public Date getCreatedAt() {
+	 return createdAt;
+	 }
 
-	// @Column()
-	// @GeneratedValue(strategy = GenerationType.AUTO)
-	// public Date getUpdatedAt() {
-	// return updatedAt;
-	// }
+	 @Column(name="updated_at", insertable = false, updatable = false)
+	 @GeneratedValue(strategy = GenerationType.AUTO)
+	 public Date getUpdatedAt() {
+	 return updatedAt;
+	 }
 
 	@Transient
 	public String getFormattedPrice() {
@@ -88,20 +88,23 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Produto [id=" + id + ", nome=" + name + ", preco=R$" + price + ", versao=" + version + "]";
+		return "Produto [id=" + id + ", nome=" + name + ", preco=R$"
+				+ price + ", versao=" + version + ", data criacao="
+				+ Util.dateToStr(createdAt) + ", ultima atualizacao="
+				+ Util.dateToStr(updatedAt) + "]";
 	}
 
 	public void setVersion(int version) {
 		this.version = version;
 	}
 
-	// @SuppressWarnings("unused")
-	// private void setCreatedAt(Date createdAt) {
-	// this.createdAt = createdAt;
-	// }
+	 @SuppressWarnings("unused")
+	 private void setCreatedAt(Date createdAt) {
+	 this.createdAt = createdAt;
+	 }
 
-	// @SuppressWarnings("unused")
-	// private void setUpdatedAt(Date updatedAt) {
-	// this.updatedAt = updatedAt;
-	// }
+	 @SuppressWarnings("unused")
+	 private void setUpdatedAt(Date updatedAt) {
+	 this.updatedAt = updatedAt;
+	 }
 }
